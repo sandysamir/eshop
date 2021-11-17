@@ -1,0 +1,7 @@
+.slider img{
+ /* vertical-align: middle; */
+height: 500px;
+width: 100%;
+z-index: 0;
+object-fit: cover
+}
