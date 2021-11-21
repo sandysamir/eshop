@@ -16,11 +16,24 @@ use Illuminate\Support\Facades\Auth;
 */
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index'])->name('dashboard');
 Route::get('/categories', [App\Http\Controllers\Frontend\FrontendController::class, 'category'])->name('categories');
 Route::get('/viewcategory/{slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewcategory'])->name('viewcategory');
 Route::get('/viewcategory/{cate_slug}/{prod_name}', [App\Http\Controllers\Frontend\FrontendController::class, 'viewproduct'])->name('viewcategory');
+Route::middleware(['auth'])->group(function () {
 
+Route::any('/addcart', [App\Http\Controllers\Frontend\CartController::class, 'add'])->name('addcart');
+Route::any('/cart', [App\Http\Controllers\Frontend\CartController::class, 'cart'])->name('cart');
+Route::post('/delete-cart-item', [App\Http\Controllers\Frontend\CartController::class, 'deleteCartItem'])->name('delete-cart-item');
+Route::any('/update-qty-item', [App\Http\Controllers\Frontend\CartController::class, 'updateCartItem'])->name('update-qty-item');
+Route::any('/checkout', [App\Http\Controllers\Frontend\CheckoutController::class, 'index'])->name('checkout');
+Route::post('/place-order', [App\Http\Controllers\Frontend\CheckoutController::class, 'placeorder'])->name('place-order');
+Route::get('/my-order', [App\Http\Controllers\Frontend\UserController::class, 'allOrders'])->name('my-order');
+/////////////wishlist////////////
+
+Route::any('/wishlist', [App\Http\Controllers\Frontend\wishlistController::class, 'wishlist'])->name('wishlist');
+
+});
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\FrontendController::class, 'index'])->name('adminhome');
@@ -39,3 +52,4 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     
     
 });
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

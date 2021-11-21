@@ -10,21 +10,7 @@
     @yield('title')
     </title>
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-     <!-- Nucleo Icons -->
-    <link href="{{ asset('admin/css/nucleo-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin/css/nucleo-svg.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
-       <!-- Styles -->
-       {{-- <link href="{{ asset('admin/css/material-dashboard.css') }}" rel="stylesheet"> --}}
-       {{-- <link href="{{ asset('admin/css/custom.css') }}" rel="stylesheet"> --}}
-   
- 
-     <!-- Material Icons -->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">   
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
     <!-- Styles -->
     <link href="{{ asset('frontend/css/bootstrap5.css') }}" rel="stylesheet">
     <link href="{{ asset('frontend/css/custom.css') }}" rel="stylesheet">
@@ -73,7 +59,13 @@
      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
      <script src="{{asset('frontend/js/bootstrap.bundle.min.js') }}" > </script>
      <script src="{{asset('frontend/js/owl.carousel.min.js') }}" > </script>
+     <script src="{{asset('frontend/js/custom.js') }}" > </script>   
      @yield('script')
-
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+     @if(session('status'))
+     <script>
+     swal("{{session('status')}}", "You clicked the button!", "success");
+       </script>
+     @endif
 </body>
 </html>

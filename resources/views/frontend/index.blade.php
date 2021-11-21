@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <h2>Featured Products</h2>
-            <div class="owl-carousel feature-carousel owl-theme">
+            <div class="owl-carousel feature-carousel owl-theme m-2">
                 @foreach ($featured_product as $item)
             <div class="item" >
                 <div class="card"style="width:250px; height:400px;">
